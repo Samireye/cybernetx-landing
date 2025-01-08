@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Box, Typography, TextField, Button, Alert, Snackbar } from '@mui/material';
 import emailjs from '@emailjs/browser';
 
@@ -10,10 +10,6 @@ const NewsletterSubscribe = () => {
     message: '',
     severity: 'success'
   });
-
-  useEffect(() => {
-    emailjs.init(process.env.VITE_EMAILJS_PUBLIC_KEY);
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

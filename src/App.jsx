@@ -2,6 +2,8 @@ import { ThemeProvider, CssBaseline, Box } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { StyledEngineProvider } from '@mui/material/styles';
 import { HelmetProvider } from 'react-helmet-async';
+import { useEffect } from 'react';
+import emailjs from '@emailjs/browser';
 import theme from './theme';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -13,6 +15,12 @@ import SEO from './components/SEO';
 import BlogHome from './blog/pages/BlogHome';
 
 function App() {
+  useEffect(() => {
+    // Initialize EmailJS once for the entire app
+    emailjs.init(process.env.VITE_EMAILJS_PUBLIC_KEY);
+    console.log('EmailJS initialized with public key:', process.env.VITE_EMAILJS_PUBLIC_KEY);
+  }, []);
+
   return (
     <HelmetProvider>
       <StyledEngineProvider injectFirst>

@@ -1,6 +1,6 @@
 import { Box, Container, Typography, TextField, Button, Grid, Snackbar, Alert } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 
 const GradientText = styled(Typography)(({ theme }) => ({
@@ -42,10 +42,6 @@ const Contact = () => {
     message: '',
     severity: 'success',
   });
-
-  useEffect(() => {
-    emailjs.init(process.env.VITE_EMAILJS_PUBLIC_KEY);
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
