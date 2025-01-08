@@ -4,7 +4,7 @@ const SEO = ({
   title = 'CyberNetX - AI-Powered Healthcare Solutions',
   description = 'Transform your healthcare practice with AI. Reduce documentation time by 60%. HIPAA-compliant solutions for medical transcription and billing.',
   keywords = 'healthcare AI, medical transcription, clinical documentation, HIPAA compliant',
-  image = '/assets/cybernetx-logo.svg',
+  image = '/assets/logo.svg',
   url = 'https://www.cybernetx.co'
 }) => {
   return (
