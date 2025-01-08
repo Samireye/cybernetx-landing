@@ -88,29 +88,80 @@ const Solutions = () => {
       },
     }}>
       <Container sx={{ position: 'relative', zIndex: 1 }}>
-        <GradientText variant="h2" align="center" sx={{ mb: 2 }}>
+        <GradientText 
+          variant="h2" 
+          align="center" 
+          sx={{ 
+            mb: 2,
+            fontSize: {
+              xs: '2rem',
+              sm: '2.5rem',
+              md: '3.5rem'
+            }
+          }}
+        >
           Our Solutions
         </GradientText>
         <Typography 
           variant="h5" 
           align="center" 
           color="text.secondary" 
-          sx={{ mb: 8, maxWidth: '800px', mx: 'auto', fontWeight: 300 }}
+          sx={{ 
+            mb: 8, 
+            maxWidth: '800px', 
+            mx: 'auto', 
+            fontWeight: 300,
+            fontSize: {
+              xs: '1.1rem',
+              sm: '1.25rem',
+              md: '1.5rem'
+            },
+            px: { xs: 2, sm: 0 }
+          }}
         >
           Innovative healthcare technology solutions powered by artificial intelligence
         </Typography>
-        <Grid container spacing={4}>
-          {solutions.map((solution, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
-              <GlassCard sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>
-                  <IconContainer sx={{ mb: 3 }}>
-                    <solution.icon />
+        <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
+          {solutions.map((solution) => (
+            <Grid item xs={12} sm={6} md={3} key={solution.title}>
+              <GlassCard sx={{ height: '100%' }}>
+                <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
+                  <IconContainer>
+                    <solution.icon sx={{ 
+                      fontSize: { 
+                        xs: 40,
+                        sm: 44,
+                        md: 48 
+                      } 
+                    }} />
                   </IconContainer>
-                  <Typography gutterBottom variant="h6" component="h2" sx={{ fontWeight: 500 }}>
+                  <Typography 
+                    variant="h5" 
+                    component="h3" 
+                    gutterBottom 
+                    align="center"
+                    sx={{
+                      fontSize: {
+                        xs: '1.25rem',
+                        sm: '1.4rem',
+                        md: '1.5rem'
+                      }
+                    }}
+                  >
                     {solution.title}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 300 }}>
+                  <Typography 
+                    variant="body1" 
+                    color="text.secondary" 
+                    align="center"
+                    sx={{
+                      fontSize: {
+                        xs: '0.9rem',
+                        sm: '1rem',
+                        md: '1rem'
+                      }
+                    }}
+                  >
                     {solution.description}
                   </Typography>
                 </CardContent>
