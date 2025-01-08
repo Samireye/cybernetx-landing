@@ -17,8 +17,8 @@ const NewsletterSubscribe = () => {
 
     try {
       await emailjs.send(
-        process.env.VITE_EMAILJS_SERVICE_ID,
-        process.env.VITE_EMAILJS_NEWSLETTER_TEMPLATE_ID,
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_NEWSLETTER_TEMPLATE_ID,
         {
           email_to: email,
           reply_to: email,

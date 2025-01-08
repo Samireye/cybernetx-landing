@@ -49,8 +49,8 @@ const Contact = () => {
 
     try {
       const result = await emailjs.sendForm(
-        process.env.VITE_EMAILJS_SERVICE_ID,
-        process.env.VITE_EMAILJS_CONTACT_TEMPLATE_ID,
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_CONTACT_TEMPLATE_ID,
         form.current
       );
 
