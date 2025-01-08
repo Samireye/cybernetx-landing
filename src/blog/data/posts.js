@@ -58,7 +58,7 @@ Patient-Centric Improvements:
 • Reduced waiting times and improved appointment scheduling
 • Better communication with healthcare providers
 
-Conclusion
+Conclusion:
 The future of healthcare is bright with the promise of AI-driven innovations. As we move towards 2025, the focus will be on creating more integrated, efficient, and patient-centered healthcare systems. The key to success will be balancing technological advancement with the human element of healthcare delivery.`,
     image: '/blog/ai-healthcare-2025.svg'
   },
@@ -141,7 +141,7 @@ Looking Ahead:
 • Technological advancements in security
 • Changes in healthcare delivery models
 
-Conclusion
+Conclusion:
 Successfully implementing AI while maintaining HIPAA compliance requires a balanced approach. Organizations must embrace innovation while ensuring patient privacy and data security remain top priorities. With proper planning and execution, healthcare providers can leverage the power of AI while maintaining the trust of their patients and meeting all regulatory requirements.`,
     image: '/blog/hipaa-compliance.svg'
   },
@@ -244,7 +244,7 @@ Security Measures:
 • Access control systems
 • Audit trail maintenance
 
-Conclusion
+Conclusion:
 AI-powered medical transcription represents a significant advancement in healthcare documentation. By improving efficiency, accuracy, and provider satisfaction, these systems are helping healthcare organizations deliver better patient care while maintaining high documentation standards.`,
     image: '/blog/medical-transcription.svg'
   }
