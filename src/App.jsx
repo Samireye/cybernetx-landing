@@ -11,6 +11,18 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import SEO from './components/SEO';
 import BlogHome from './blog/pages/BlogHome';
+import BlogPost from './blog/components/BlogPost';
+
+// Import blog posts
+import aiHealthcare from './blog/posts/ai-in-healthcare-2025.mdx';
+import medicalTranscription from './blog/posts/medical-transcription-revolution.mdx';
+import hipaaCompliance from './blog/posts/hipaa-compliance-ai.mdx';
+
+const BLOG_POSTS = {
+  'ai-in-healthcare-2025': aiHealthcare,
+  'medical-transcription-revolution': medicalTranscription,
+  'hipaa-compliance-ai': hipaaCompliance
+};
 
 function App() {
   return (
@@ -28,6 +40,7 @@ function App() {
               <Navbar />
               <Routes>
                 <Route path="/blog" element={<BlogHome />} />
+                <Route path="/blog/:slug" element={<BlogPost posts={BLOG_POSTS} />} />
                 <Route path="/" element={
                   <>
                     <Box id="hero">

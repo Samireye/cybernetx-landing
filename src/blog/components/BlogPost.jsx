@@ -1,17 +1,39 @@
 import { Box, Typography, Chip, Divider } from '@mui/material';
 import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { MDXProvider } from '@mdx-js/react';
+import BlogLayout from '../layouts/BlogLayout';
 import SocialShare from './SocialShare';
 
-const BlogPost = ({ title, date, content, categories, author }) => {
+const components = {
+  h1: props => <Typography variant="h2" component="h1" gutterBottom {...props} />,
+  h2: props => <Typography variant="h3" component="h2" gutterBottom {...props} />,
+  h3: props => <Typography variant="h4" component="h3" gutterBottom {...props} />,
+  p: props => <Typography variant="body1" paragraph {...props} />,
+  ul: props => <Box component="ul" sx={{ mb: 2 }} {...props} />,
+  li: props => <Typography component="li" variant="body1" {...props} />,
+};
+
+const BlogPost = ({ posts }) => {
+  const { slug } = useParams();
+  const navigate = useNavigate();
   const [currentUrl, setCurrentUrl] = useState('');
 
   useEffect(() => {
     setCurrentUrl(window.location.href);
   }, []);
 
+  if (!posts[slug]) {
+    navigate('/blog');
+    return null;
+  }
+
+  const { frontmatter, default: Content } = posts[slug];
+  const { title, date, categories, author } = frontmatter;
+
   return (
-    <Box>
+    <BlogLayout>
       <Typography variant="h2" component="h1" gutterBottom>
         {title}
       </Typography>
@@ -46,40 +68,32 @@ const BlogPost = ({ title, date, content, categories, author }) => {
       <Divider sx={{ my: 4 }} />
 
       <Box sx={{ 
-        '& h1': { mt: 6, mb: 2, fontSize: '2.5rem' },
-        '& h2': { mt: 5, mb: 2, fontSize: '2rem' },
-        '& h3': { mt: 4, mb: 2, fontSize: '1.75rem' },
-        '& p': { mb: 2, lineHeight: 1.7 },
-        '& ul, & ol': { mb: 2, pl: 4 },
-        '& li': { mb: 1 },
-        '& img': { maxWidth: '100%', height: 'auto', borderRadius: 1 },
-        '& code': { 
-          backgroundColor: 'rgba(0, 0, 0, 0.1)',
-          padding: '2px 4px',
+        '& img': {
+          maxWidth: '100%',
+          height: 'auto',
           borderRadius: 1,
-          fontFamily: 'monospace'
+          mb: 2
         },
-        '& pre': {
-          backgroundColor: 'rgba(0, 0, 0, 0.1)',
-          padding: 2,
-          borderRadius: 1,
-          overflow: 'auto',
-          '& code': {
-            backgroundColor: 'transparent',
-            padding: 0
+        '& a': {
+          color: 'primary.main',
+          textDecoration: 'none',
+          '&:hover': {
+            textDecoration: 'underline'
           }
         },
         '& blockquote': {
           borderLeft: '4px solid',
           borderColor: 'primary.main',
           pl: 2,
-          ml: 0,
+          my: 2,
           fontStyle: 'italic'
         }
       }}>
-        {content}
+        <MDXProvider components={components}>
+          <Content />
+        </MDXProvider>
       </Box>
-    </Box>
+    </BlogLayout>
   );
 };
 
