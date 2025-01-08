@@ -50,6 +50,19 @@ const Navbar = () => {
     setMobileOpen(!mobileOpen);
   };
 
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId.toLowerCase());
+    if (section) {
+      const navbarHeight = 70; // Height of the fixed navbar
+      const sectionPosition = section.offsetTop - navbarHeight;
+      window.scrollTo({
+        top: sectionPosition,
+        behavior: 'smooth'
+      });
+      setMobileOpen(false);
+    }
+  };
+
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', bgcolor: 'background.paper' }}>
       <Box sx={{ my: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -60,11 +73,16 @@ const Navbar = () => {
       </Box>
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} sx={{ justifyContent: 'center' }}>
+          <ListItem 
+            key={item} 
+            sx={{ justifyContent: 'center' }}
+            onClick={() => scrollToSection(item)}
+          >
             <ListItemText 
               primary={item} 
               sx={{ 
                 color: 'text.secondary',
+                cursor: 'pointer',
                 '&:hover': { color: 'primary.main' }
               }}
             />
@@ -79,7 +97,15 @@ const Navbar = () => {
       <StyledAppBar position="fixed">
         <Container maxWidth="lg">
           <Toolbar sx={{ px: { xs: 0 }, minHeight: { xs: '70px' } }}>
-            <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+            <Box 
+              sx={{ 
+                flexGrow: 1, 
+                display: 'flex', 
+                alignItems: 'center',
+                cursor: 'pointer'
+              }}
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            >
               <Logo src={logo} alt="CyberNetX" />
               <GradientText variant="h5">
                 CyberNetX
@@ -99,11 +125,13 @@ const Navbar = () => {
                 {navItems.map((item) => (
                   <Button 
                     key={item}
+                    onClick={() => scrollToSection(item)}
                     sx={{ 
-                      ml: 2,
                       color: 'text.secondary',
+                      mx: 1,
                       '&:hover': {
                         color: 'primary.main',
+                        background: 'rgba(255, 255, 255, 0.05)'
                       }
                     }}
                   >
@@ -121,18 +149,21 @@ const Navbar = () => {
         open={mobileOpen}
         onClose={handleDrawerToggle}
         ModalProps={{
-          keepMounted: true,
+          keepMounted: true, // Better mobile performance
         }}
-        PaperProps={{
-          sx: {
-            backgroundColor: 'background.paper',
+        sx={{
+          display: { xs: 'block', sm: 'none' },
+          '& .MuiDrawer-paper': { 
+            boxSizing: 'border-box', 
             width: 240,
+            backgroundColor: 'rgba(0, 0, 0, 0.95)',
+            backdropFilter: 'blur(10px)',
           },
         }}
       >
         {drawer}
       </Drawer>
-      <Toolbar />
+      <Toolbar /> {/* Spacer for fixed AppBar */}
     </>
   );
 };
