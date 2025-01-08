@@ -1,5 +1,10 @@
-import { Box, Container, Typography, TextField, Button, Grid } from '@mui/material';
+import { Box, Container, Typography, TextField, Button, Grid, Snackbar, Alert } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
+
+// Initialize EmailJS
+emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
 
 const GradientText = styled(Typography)(({ theme }) => ({
   background: 'linear-gradient(45deg, #00E5FF 30%, #4CAF50 90%)',
@@ -33,6 +38,44 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
 }));
 
 const Contact = () => {
+  const form = useRef(null);
+  const [loading, setLoading] = useState(false);
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: '',
+    severity: 'success',
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const result = await emailjs.sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        form.current,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+
+      setSnackbar({
+        open: true,
+        message: 'Message sent successfully! We\'ll get back to you soon.',
+        severity: 'success'
+      });
+      form.current.reset();
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      setSnackbar({
+        open: true,
+        message: 'Failed to send message. Please try again or email us directly.',
+        severity: 'error'
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <Box sx={{ 
       py: 12,
@@ -70,6 +113,8 @@ const Contact = () => {
         <Box 
           component="form" 
           noValidate 
+          ref={form}
+          onSubmit={handleSubmit}
           sx={{ 
             mt: 4,
             p: 4,
@@ -125,6 +170,8 @@ const Contact = () => {
                 variant="contained"
                 size="large"
                 fullWidth
+                type="submit"
+                disabled={loading}
                 sx={{ 
                   background: 'linear-gradient(45deg, #00E5FF 30%, #4CAF50 90%)',
                   '&:hover': {
@@ -132,12 +179,21 @@ const Contact = () => {
                   }
                 }}
               >
-                Send Message
+                {loading ? 'Sending...' : 'Send Message'}
               </Button>
             </Grid>
           </Grid>
         </Box>
       </Container>
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={6000}
+        onClose={() => setSnackbar({ ...snackbar, open: false })}
+      >
+        <Alert severity={snackbar.severity} sx={{ width: '100%' }}>
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };
