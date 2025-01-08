@@ -96,8 +96,8 @@ const Footer = () => {
                   },
                 }}
               >
-                Email: <Link href="mailto:info@cybernetx.com">info@cybernetx.com</Link><br />
-                Phone: (555) 123-4567<br />
+                Email: <Link href="mailto:cybernetxai@gmail.com">cybernetxai@gmail.com</Link><br />
+                Phone: (202) 556-0528<br />
                 Location: Silicon Valley, CA
               </Typography>
             </Grid>
