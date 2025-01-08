@@ -29,7 +29,7 @@ const NewsletterSubscribe = () => {
         {
           email_to: email,
           reply_to: email,
-          to_name: name || 'Valued Subscriber', // Use provided name or fallback
+          to_name: name || 'Valued Subscriber',
         }
       );
 
@@ -64,19 +64,37 @@ const NewsletterSubscribe = () => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
+        alignItems: 'center',
         gap: 2,
-        maxWidth: '100%',
+        maxWidth: '800px',
         width: '100%',
+        mx: 'auto',
         bgcolor: 'background.paper',
-        p: 3,
+        p: 4,
         borderRadius: 2,
         boxShadow: 1,
       }}
     >
-      <Typography variant="h6" component="h3" gutterBottom>
+      <Typography 
+        variant="h4" 
+        component="h3" 
+        align="center"
+        gutterBottom
+        sx={{ 
+          fontWeight: 600,
+          mb: 1
+        }}
+      >
         Stay Updated with CybernetX
       </Typography>
-      <Typography variant="body2" color="text.secondary" gutterBottom>
+      
+      <Typography 
+        variant="body1" 
+        color="text.secondary" 
+        align="center"
+        gutterBottom
+        sx={{ mb: 3 }}
+      >
         Subscribe to our newsletter for the latest insights on healthcare AI, HIPAA compliance, and medical technology.
       </Typography>
       
@@ -86,7 +104,10 @@ const NewsletterSubscribe = () => {
         value={name}
         onChange={(e) => setName(e.target.value)}
         fullWidth
-        sx={{ mb: 2 }}
+        sx={{ 
+          maxWidth: '600px',
+          mb: 2 
+        }}
         placeholder="Your name (optional)"
       />
 
@@ -98,7 +119,10 @@ const NewsletterSubscribe = () => {
         onChange={(e) => setEmail(e.target.value)}
         required
         fullWidth
-        sx={{ mb: 2 }}
+        sx={{ 
+          maxWidth: '600px',
+          mb: 2 
+        }}
         placeholder="your.email@example.com"
       />
 
@@ -108,6 +132,9 @@ const NewsletterSubscribe = () => {
         disabled={loading}
         sx={{
           py: 1.5,
+          px: 4,
+          fontSize: '1.1rem',
+          fontWeight: 'bold',
           bgcolor: 'primary.main',
           color: 'white',
           '&:hover': {
