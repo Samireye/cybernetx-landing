@@ -51,8 +51,7 @@ const Contact = () => {
       const result = await emailjs.sendForm(
         process.env.VITE_EMAILJS_SERVICE_ID,
         process.env.VITE_EMAILJS_CONTACT_TEMPLATE_ID,
-        form.current,
-        process.env.VITE_EMAILJS_PUBLIC_KEY
+        form.current
       );
 
       setSnackbar({

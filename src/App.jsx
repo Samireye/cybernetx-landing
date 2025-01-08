@@ -16,9 +16,13 @@ import BlogHome from './blog/pages/BlogHome';
 
 function App() {
   useEffect(() => {
-    // Initialize EmailJS once for the entire app
-    emailjs.init(process.env.VITE_EMAILJS_PUBLIC_KEY);
-    console.log('EmailJS initialized with public key:', process.env.VITE_EMAILJS_PUBLIC_KEY);
+    // Initialize EmailJS with just the key
+    emailjs.init({
+      publicKey: process.env.VITE_EMAILJS_PUBLIC_KEY,
+      // Enable debug logs
+      debug: true
+    });
+    console.log('EmailJS initialized');
   }, []);
 
   return (
