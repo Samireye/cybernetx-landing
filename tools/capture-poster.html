@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Frame Capture</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #000;
+            color: white;
+            font-family: system-ui;
+            padding: 20px;
+        }
+        video {
+            max-width: 800px;
+            margin: 20px 0;
+        }
+        canvas {
+            display: none;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        #preview {
+            max-width: 800px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Video Frame Capture</h1>
+    <video id="video" controls>
+        <source src="../src/assets/background.mp4" type="video/mp4">
+    </video>
+    <button onclick="captureFrame()">Capture Current Frame</button>
+    <canvas id="canvas"></canvas>
+    <img id="preview">
+
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const preview = document.getElementById('preview');
+
+        function captureFrame() {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0);
+            preview.src = canvas.toDataURL('image/jpeg', 0.9);
+            
+            // Create download link
+            const link = document.createElement('a');
+            link.download = 'video-poster.jpg';
+            link.href = preview.src;
+            link.click();
+        }
+    </script>
+</body>
+</html>
