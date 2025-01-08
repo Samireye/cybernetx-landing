@@ -4,6 +4,7 @@ import emailjs from '@emailjs/browser';
 
 const NewsletterSubscribe = () => {
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
   const [snackbar, setSnackbar] = useState({
     open: false,
@@ -28,7 +29,7 @@ const NewsletterSubscribe = () => {
         {
           email_to: email,
           reply_to: email,
-          to_name: email.split('@')[0],
+          to_name: name || 'Valued Subscriber', // Use provided name or fallback
         }
       );
 
@@ -40,6 +41,7 @@ const NewsletterSubscribe = () => {
         severity: 'success'
       });
       setEmail('');
+      setName('');
     } catch (error) {
       console.error('Newsletter subscription error:', error);
       setSnackbar({
@@ -48,87 +50,82 @@ const NewsletterSubscribe = () => {
         severity: 'error'
       });
     }
-
     setLoading(false);
   };
 
   const handleCloseSnackbar = () => {
-    setSnackbar(prev => ({ ...prev, open: false }));
+    setSnackbar({ ...snackbar, open: false });
   };
 
   return (
-    <Box
+    <Box 
+      component="form" 
+      onSubmit={handleSubmit}
       sx={{
-        p: 4,
-        borderRadius: 2,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 2,
+        maxWidth: '100%',
+        width: '100%',
         bgcolor: 'background.paper',
-        backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.1) 0%, rgba(76, 175, 80, 0.05) 25%, rgba(0, 0, 0, 0) 50%)',
-        border: '1px solid',
-        borderColor: 'divider',
+        p: 3,
+        borderRadius: 2,
+        boxShadow: 1,
       }}
     >
-      <Typography variant="h4" component="h2" gutterBottom align="center">
-        Stay Updated
+      <Typography variant="h6" component="h3" gutterBottom>
+        Stay Updated with CybernetX
       </Typography>
-      <Typography variant="body1" color="text.secondary" paragraph align="center">
-        Subscribe to our newsletter for the latest insights in healthcare AI and HIPAA compliance.
+      <Typography variant="body2" color="text.secondary" gutterBottom>
+        Subscribe to our newsletter for the latest insights on healthcare AI, HIPAA compliance, and medical technology.
       </Typography>
+      
+      <TextField
+        label="Name"
+        variant="outlined"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        fullWidth
+        sx={{ mb: 2 }}
+        placeholder="Your name (optional)"
+      />
 
-      <Box
-        component="form"
-        onSubmit={handleSubmit}
+      <TextField
+        label="Email"
+        variant="outlined"
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+        fullWidth
+        sx={{ mb: 2 }}
+        placeholder="your.email@example.com"
+      />
+
+      <Button
+        type="submit"
+        variant="contained"
+        disabled={loading}
         sx={{
-          mt: 3,
-          display: 'flex',
-          flexDirection: { xs: 'column', sm: 'row' },
-          gap: 2,
-          maxWidth: 600,
-          mx: 'auto'
+          py: 1.5,
+          bgcolor: 'primary.main',
+          color: 'white',
+          '&:hover': {
+            bgcolor: 'primary.dark',
+          },
         }}
       >
-        <TextField
-          fullWidth
-          type="email"
-          label="Email Address"
-          variant="outlined"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          sx={{
-            '& .MuiOutlinedInput-root': {
-              '& fieldset': {
-                borderColor: 'divider',
-              },
-              '&:hover fieldset': {
-                borderColor: 'primary.main',
-              },
-            },
-          }}
-        />
-        <Button
-          type="submit"
-          variant="contained"
-          disabled={loading}
-          sx={{
-            minWidth: { sm: 200 },
-            background: 'linear-gradient(45deg, #00E5FF 30%, #4CAF50 90%)',
-            '&:hover': {
-              background: 'linear-gradient(45deg, #00B2CC 30%, #388E3C 90%)',
-            },
-          }}
-        >
-          {loading ? 'Subscribing...' : 'Subscribe'}
-        </Button>
-      </Box>
+        {loading ? 'Subscribing...' : 'Subscribe Now'}
+      </Button>
 
-      <Snackbar
-        open={snackbar.open}
-        autoHideDuration={6000}
+      <Snackbar 
+        open={snackbar.open} 
+        autoHideDuration={6000} 
         onClose={handleCloseSnackbar}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
-        <Alert
-          onClose={handleCloseSnackbar}
+        <Alert 
+          onClose={handleCloseSnackbar} 
           severity={snackbar.severity}
           variant="filled"
           sx={{ width: '100%' }}
