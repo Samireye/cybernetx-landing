@@ -3,7 +3,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Logo from '../assets/cybernetx-logo.svg';
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -53,7 +52,7 @@ const Navbar = () => {
       <Toolbar>
         <Box 
           component="img" 
-          src={Logo} 
+          src="/assets/cybernetx-logo.svg"
           alt="CyberNetX Logo"
           sx={{ 
             height: 40,
