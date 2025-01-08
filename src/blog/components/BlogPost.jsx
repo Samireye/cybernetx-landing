@@ -1,84 +1,79 @@
-import { Box, Typography, Chip, Divider } from '@mui/material';
+import { useParams } from 'react-router-dom';
+import { Typography, Box, Chip, Container } from '@mui/material';
 import { format } from 'date-fns';
-import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
 import BlogLayout from '../layouts/BlogLayout';
+import { BLOG_POSTS } from '../data/posts';
 import SocialShare from './SocialShare';
 
-const BlogPost = ({ post }) => {
-  const [currentUrl, setCurrentUrl] = useState('');
-
-  useEffect(() => {
-    setCurrentUrl(window.location.href);
-  }, []);
+const BlogPost = () => {
+  const { slug } = useParams();
+  const post = BLOG_POSTS.find(p => p.slug === slug);
 
   if (!post) {
-    return null;
+    return (
+      <BlogLayout>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Post not found
+        </Typography>
+        <Typography>
+          Sorry, the blog post you're looking for doesn't exist.
+        </Typography>
+      </BlogLayout>
+    );
   }
 
-  const { title, date, categories, author } = post;
-
   return (
-    <BlogLayout>
-      <Typography variant="h2" component="h1" gutterBottom>
-        {title}
-      </Typography>
-      
-      <Box sx={{ mb: 4 }}>
-        <Typography variant="subtitle1" color="text.secondary" component="span">
-          {format(new Date(date), 'MMMM dd, yyyy')}
+    <BlogLayout title={post.title} category={post.categories[0]}>
+      <article>
+        <Typography variant="h2" component="h1" gutterBottom>
+          {post.title}
         </Typography>
-        {author && (
-          <Typography variant="subtitle1" color="text.secondary" component="span" sx={{ ml: 2 }}>
-            by {author}
-          </Typography>
-        )}
-      </Box>
-
-      <Box sx={{ mb: 4 }}>
-        {categories.map((category) => (
-          <Chip
-            key={category}
-            label={category}
-            sx={{ mr: 1 }}
-          />
-        ))}
-      </Box>
-
-      {currentUrl && (
+        
         <Box sx={{ mb: 4 }}>
-          <SocialShare title={title} url={currentUrl} />
+          <Typography variant="subtitle1" color="text.secondary" component="span">
+            {format(new Date(post.date), 'MMMM dd, yyyy')}
+          </Typography>
+          {post.author && (
+            <Typography variant="subtitle1" color="text.secondary" component="span" sx={{ ml: 2 }}>
+              by {post.author}
+            </Typography>
+          )}
         </Box>
-      )}
 
-      <Divider sx={{ my: 4 }} />
+        <Box sx={{ mb: 3 }}>
+          {post.categories.map((category) => (
+            <Chip
+              key={category}
+              label={category}
+              size="small"
+              sx={{ mr: 1 }}
+            />
+          ))}
+        </Box>
 
-      <Box sx={{ 
-        '& img': {
-          maxWidth: '100%',
-          height: 'auto',
-          borderRadius: 1,
-          mb: 2
-        },
-        '& a': {
-          color: 'primary.main',
-          textDecoration: 'none',
-          '&:hover': {
-            textDecoration: 'underline'
-          }
-        },
-        '& blockquote': {
-          borderLeft: '4px solid',
-          borderColor: 'primary.main',
-          pl: 2,
-          my: 2,
-          fontStyle: 'italic'
-        }
-      }}>
-        <Typography variant="body1">
-          {post.excerpt}
+        {post.image && (
+          <Box sx={{ mb: 4 }}>
+            <img 
+              src={post.image} 
+              alt={post.title}
+              style={{ 
+                width: '100%',
+                maxHeight: '400px',
+                objectFit: 'cover',
+                borderRadius: '8px'
+              }}
+            />
+          </Box>
+        )}
+
+        <Typography variant="body1" sx={{ mb: 4 }}>
+          {post.content}
         </Typography>
-      </Box>
+
+        <Box sx={{ mt: 6, pt: 4, borderTop: 1, borderColor: 'divider' }}>
+          <SocialShare title={post.title} />
+        </Box>
+      </article>
     </BlogLayout>
   );
 };

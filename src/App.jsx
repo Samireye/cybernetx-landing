@@ -13,6 +13,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import SEO from './components/SEO';
 import BlogHome from './blog/pages/BlogHome';
+import BlogPost from './blog/components/BlogPost';
 
 // Log environment variables immediately
 console.log('=== START: Environment Variables Check ===');
@@ -56,7 +57,8 @@ function App() {
             }}>
               <Navbar />
               <Routes>
-                <Route path="/blog/*" element={<BlogHome />} />
+                <Route path="/blog" element={<BlogHome />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
                 <Route path="/" element={
                   <>
                     <Box id="hero">
