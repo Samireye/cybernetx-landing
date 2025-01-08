@@ -31,14 +31,14 @@ const Video = styled('video')({
 const VideoBackground = () => {
   return (
     <VideoContainer>
-      <Video
+      <Video>
         autoPlay
         muted
         loop
         playsInline
-        poster="/src/assets/video-poster.jpg"
-      >
-        <source src="/src/assets/background.mp4" type="video/mp4" />
+        poster="/videos/video-poster.jpg"
+        src="/videos/background.mp4"
+        type="video/mp4"
       </Video>
     </VideoContainer>
   );
