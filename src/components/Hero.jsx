@@ -36,6 +36,20 @@ const GradientText = styled(Typography)(({ theme }) => ({
 }));
 
 const Hero = () => {
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerOffset = 64; // Height of your fixed header if you have one
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <HeroSection>
       <VideoBackground />
@@ -104,6 +118,7 @@ const Hero = () => {
                 variant="contained"
                 size="large"
                 fullWidth={false}
+                onClick={() => scrollToSection('solutions')}
                 sx={{ 
                   background: 'linear-gradient(45deg, #00E5FF 30%, #4CAF50 90%)',
                   '&:hover': {
@@ -118,6 +133,7 @@ const Hero = () => {
                 variant="outlined"
                 size="large"
                 fullWidth={false}
+                onClick={() => scrollToSection('contact')}
                 sx={{
                   borderColor: 'rgba(255,255,255,0.3)',
                   backdropFilter: 'blur(4px)',
