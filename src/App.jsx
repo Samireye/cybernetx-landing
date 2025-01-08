@@ -15,6 +15,7 @@ import SEO from './components/SEO';
 import BlogHome from './blog/pages/BlogHome';
 import BlogPost from './blog/components/BlogPost';
 import NewsletterSubscribe from './blog/components/NewsletterSubscribe';
+import SolutionsPage from './components/SolutionsPage';
 
 // Log environment variables immediately
 console.log('=== START: Environment Variables Check ===');
@@ -60,6 +61,7 @@ function App() {
               <Routes>
                 <Route path="/blog" element={<BlogHome />} />
                 <Route path="/blog/:slug" element={<BlogPost />} />
+                <Route path="/solutions" element={<SolutionsPage />} />
                 <Route path="/" element={
                   <>
                     <Box id="hero">
