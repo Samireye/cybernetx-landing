@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Box, Typography, TextField, Button, Alert, Snackbar } from '@mui/material';
 import emailjs from '@emailjs/browser';
-import { EMAILJS_CONFIG } from '../../config/emailjs';
 
 const NewsletterSubscribe = () => {
   const [email, setEmail] = useState('');
@@ -18,14 +17,14 @@ const NewsletterSubscribe = () => {
 
     try {
       await emailjs.send(
-        EMAILJS_CONFIG.SERVICE_ID,
-        EMAILJS_CONFIG.NEWSLETTER_TEMPLATE_ID,
+        process.env.VITE_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_TEMPLATE_ID,
         {
           email_to: email,
           reply_to: email,
           to_name: email.split('@')[0], // Use part before @ as name
         },
-        EMAILJS_CONFIG.PUBLIC_KEY
+        process.env.VITE_EMAILJS_PUBLIC_KEY
       );
 
       setSnackbar({
