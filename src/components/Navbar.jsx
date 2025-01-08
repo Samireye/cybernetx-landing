@@ -3,7 +3,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import logoUrl from '../assets/logo.svg';
+import logo from '../assets/logo.png';
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -54,12 +54,13 @@ const Navbar = () => {
         <Box sx={{ display: 'flex', alignItems: 'center', mr: 3 }}>
           <Box 
             component="img" 
-            src={logoUrl}
+            src={logo}
             alt="CyberNetX Logo"
             sx={{ 
               height: 40,
               cursor: 'pointer',
               filter: 'brightness(1.2)',
+              objectFit: 'contain'
             }}
             onClick={() => navigateTo('/')}
           />

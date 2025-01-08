@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import logoUrl from '../assets/logo.svg';
+import logo from '../assets/logo.png';
 
 const SEO = ({ 
   title = 'CyberNetX - AI-Powered Healthcare Solutions',
@@ -15,17 +15,17 @@ const SEO = ({
       
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={logoUrl} />
+      <meta property="og:image" content={logo} />
       <meta property="og:url" content={url} />
       <meta property="og:type" content="website" />
       
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={logoUrl} />
+      <meta name="twitter:image" content={logo} />
       
       <link rel="canonical" href={url} />
-      <link rel="icon" type="image/svg+xml" href={logoUrl} />
+      <link rel="icon" type="image/png" href={logo} />
     </Helmet>
   );
 };
