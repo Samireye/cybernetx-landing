@@ -1,10 +1,10 @@
 import { Helmet } from 'react-helmet-async';
+import logoUrl from '../assets/logo.svg';
 
 const SEO = ({ 
   title = 'CyberNetX - AI-Powered Healthcare Solutions',
   description = 'Transform your healthcare practice with AI. Reduce documentation time by 60%. HIPAA-compliant solutions for medical transcription and billing.',
   keywords = 'healthcare AI, medical transcription, clinical documentation, HIPAA compliant',
-  image = '/assets/logo.svg',
   url = 'https://www.cybernetx.co'
 }) => {
   return (
@@ -15,17 +15,17 @@ const SEO = ({
       
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={image} />
+      <meta property="og:image" content={logoUrl} />
       <meta property="og:url" content={url} />
       <meta property="og:type" content="website" />
       
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={image} />
+      <meta name="twitter:image" content={logoUrl} />
       
       <link rel="canonical" href={url} />
-      <link rel="icon" type="image/svg+xml" href={image} />
+      <link rel="icon" type="image/svg+xml" href={logoUrl} />
     </Helmet>
   );
 };

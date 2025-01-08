@@ -1,12 +1,12 @@
 import { AppBar, Toolbar, Button, Box, IconButton, Drawer, List, ListItem, useTheme, useMediaQuery, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import logoUrl from '../assets/logo.svg';
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [logoError, setLogoError] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const navigate = useNavigate();
@@ -14,11 +14,6 @@ const Navbar = () => {
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
-  };
-
-  const handleLogoError = (e) => {
-    console.error('Logo failed to load:', e);
-    setLogoError(true);
   };
 
   const scrollToSection = (sectionId) => {
@@ -56,33 +51,19 @@ const Navbar = () => {
   return (
     <AppBar position="fixed" sx={{ background: 'rgba(0, 0, 0, 0.8)', backdropFilter: 'blur(8px)' }}>
       <Toolbar>
-        {logoError ? (
-          <Typography
-            variant="h6"
-            sx={{
-              color: '#00E5FF',
-              fontWeight: 'bold',
-              cursor: 'pointer',
-              mr: 3
-            }}
-            onClick={() => navigateTo('/')}
-          >
-            CyberNetX
-          </Typography>
-        ) : (
+        <Box sx={{ display: 'flex', alignItems: 'center', mr: 3 }}>
           <Box 
             component="img" 
-            src="/assets/cybernetx-logo.svg"
+            src={logoUrl}
             alt="CyberNetX Logo"
-            onError={handleLogoError}
             sx={{ 
               height: 40,
               cursor: 'pointer',
-              mr: 3
+              filter: 'brightness(1.2)',
             }}
             onClick={() => navigateTo('/')}
           />
-        )}
+        </Box>
 
         {/* Desktop Navigation */}
         {!isMobile && (
