@@ -16,17 +16,14 @@ const NewsletterSubscribe = () => {
     setLoading(true);
 
     try {
-      const templateParams = {
-        email_to: email,
-        reply_to: email,
-        to_name: email.split('@')[0], // Use part before @ as name
-      };
-
       await emailjs.send(
         process.env.VITE_EMAILJS_SERVICE_ID,
         process.env.VITE_EMAILJS_NEWSLETTER_TEMPLATE_ID,
-        templateParams,
-        process.env.VITE_EMAILJS_PUBLIC_KEY
+        {
+          email_to: email,
+          reply_to: email,
+          to_name: email.split('@')[0],
+        }
       );
 
       setSnackbar({
