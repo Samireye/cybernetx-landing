@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 import SEO from './components/SEO';
 import BlogHome from './blog/pages/BlogHome';
 import BlogPost from './blog/components/BlogPost';
+import NewsletterSubscribe from './blog/components/NewsletterSubscribe';
 
 // Log environment variables immediately
 console.log('=== START: Environment Variables Check ===');
@@ -69,6 +70,16 @@ function App() {
                     </Box>
                     <Box id="about">
                       <About />
+                    </Box>
+                    <Box 
+                      id="newsletter"
+                      sx={{
+                        py: 8,
+                        px: 2,
+                        background: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,229,255,0.05) 100%)',
+                      }}
+                    >
+                      <NewsletterSubscribe />
                     </Box>
                     <Box id="contact">
                       <Contact />
