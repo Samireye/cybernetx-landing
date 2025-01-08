@@ -49,18 +49,18 @@ const IconContainer = styled(Box)(({ theme }) => ({
 const solutions = [
   {
     title: 'CyberMedAssist',
-    description: 'AI-powered clinical note generation from audio, streamlining documentation for healthcare providers.',
+    description: 'AI-powered medical assistant for healthcare providers, offering real-time support for diagnosis, coding, and clinical decision-making.',
     icon: HealthAndSafetyIcon,
+  },
+  {
+    title: 'CyberScribe',
+    description: 'AI-powered clinical note generation from audio, streamlining documentation for healthcare providers.',
+    icon: MonitorHeartIcon,
   },
   {
     title: 'CyberPay',
     description: 'Simplified healthcare payment solutions with integrated insurance processing and patient billing.',
     icon: PaymentsIcon,
-  },
-  {
-    title: 'CyberCheck',
-    description: 'Smart symptom analysis and health insights powered by advanced AI, providing rapid preliminary assessments.',
-    icon: MonitorHeartIcon,
   },
   {
     title: 'CyberConnect',
@@ -105,69 +105,53 @@ const Solutions = () => {
         <Typography 
           variant="h5" 
           align="center" 
-          color="text.secondary" 
+          color="text.secondary"
           sx={{ 
-            mb: 8, 
-            maxWidth: '800px', 
-            mx: 'auto', 
-            fontWeight: 300,
-            fontSize: {
-              xs: '1.1rem',
-              sm: '1.25rem',
-              md: '1.5rem'
-            },
-            px: { xs: 2, sm: 0 }
+            mb: 8,
+            maxWidth: '800px',
+            mx: 'auto',
+            px: 2,
           }}
         >
-          Innovative healthcare technology solutions powered by artificial intelligence
+          Empowering healthcare providers with cutting-edge AI solutions
         </Typography>
-        <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
-          {solutions.map((solution) => (
-            <Grid item xs={12} sm={6} md={3} key={solution.title}>
-              <GlassCard sx={{ height: '100%' }}>
-                <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
-                  <IconContainer>
-                    <solution.icon sx={{ 
-                      fontSize: { 
-                        xs: 40,
-                        sm: 44,
-                        md: 48 
-                      } 
-                    }} />
-                  </IconContainer>
-                  <Typography 
-                    variant="h5" 
-                    component="h3" 
-                    gutterBottom 
-                    align="center"
-                    sx={{
-                      fontSize: {
-                        xs: '1.25rem',
-                        sm: '1.4rem',
-                        md: '1.5rem'
-                      }
-                    }}
-                  >
-                    {solution.title}
-                  </Typography>
-                  <Typography 
-                    variant="body1" 
-                    color="text.secondary" 
-                    align="center"
-                    sx={{
-                      fontSize: {
-                        xs: '0.9rem',
-                        sm: '1rem',
-                        md: '1rem'
-                      }
-                    }}
-                  >
-                    {solution.description}
-                  </Typography>
-                </CardContent>
-              </GlassCard>
-            </Grid>
-          ))}
+
+        <Grid container spacing={4}>
+          {solutions.map((solution, index) => {
+            const Icon = solution.icon;
+            return (
+              <Grid item xs={12} sm={6} key={index}>
+                <GlassCard>
+                  <CardContent sx={{ p: 4 }}>
+                    <IconContainer>
+                      <Icon />
+                    </IconContainer>
+                    <Typography 
+                      variant="h5" 
+                      align="center" 
+                      gutterBottom
+                      sx={{ 
+                        fontWeight: 600,
+                        mb: 2,
+                      }}
+                    >
+                      {solution.title}
+                    </Typography>
+                    <Typography 
+                      variant="body1" 
+                      align="center"
+                      color="text.secondary"
+                      sx={{ 
+                        lineHeight: 1.6,
+                      }}
+                    >
+                      {solution.description}
+                    </Typography>
+                  </CardContent>
+                </GlassCard>
+              </Grid>
+            );
+          })}
         </Grid>
       </Container>
     </Box>

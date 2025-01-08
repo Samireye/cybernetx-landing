@@ -41,7 +41,7 @@ const Navbar = () => {
 
   const NavItems = () => (
     <>
-      <Button color="inherit" onClick={() => scrollToSection('solutions')}>Solutions</Button>
+      <Button color="inherit" onClick={() => navigateTo('/solutions')}>Solutions</Button>
       <Button color="inherit" onClick={() => scrollToSection('about')}>About</Button>
       <Button color="inherit" onClick={() => navigateTo('/blog')}>Blog</Button>
       <Button color="inherit" onClick={() => scrollToSection('contact')}>Contact</Button>
@@ -60,10 +60,24 @@ const Navbar = () => {
               height: 40,
               cursor: 'pointer',
               filter: 'brightness(1.2)',
-              objectFit: 'contain'
+              objectFit: 'contain',
+              mr: 1
             }}
             onClick={() => navigateTo('/')}
           />
+          <Typography
+            variant="h6"
+            sx={{
+              fontWeight: 600,
+              cursor: 'pointer',
+              background: 'linear-gradient(45deg, #0088ff 30%, #00ff88 90%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent'
+            }}
+            onClick={() => navigateTo('/')}
+          >
+            CyberNetX
+          </Typography>
         </Box>
 
         {/* Desktop Navigation */}
@@ -99,20 +113,19 @@ const Navbar = () => {
           sx={{
             '& .MuiDrawer-paper': { 
               width: 240,
-              background: 'rgba(0, 0, 0, 0.9)',
-              backdropFilter: 'blur(8px)',
-              color: 'white'
+              bgcolor: 'background.default',
+              boxSizing: 'border-box',
             },
           }}
         >
           <Box sx={{ p: 2, display: 'flex', justifyContent: 'flex-end' }}>
-            <IconButton color="inherit" onClick={handleDrawerToggle}>
+            <IconButton onClick={handleDrawerToggle}>
               <CloseIcon />
             </IconButton>
           </Box>
           <List>
             <ListItem>
-              <Button fullWidth color="inherit" onClick={() => scrollToSection('solutions')}>
+              <Button fullWidth color="inherit" onClick={() => navigateTo('/solutions')}>
                 Solutions
               </Button>
             </ListItem>
