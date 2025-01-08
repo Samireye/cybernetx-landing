@@ -3,6 +3,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import Logo from '../assets/cybernetx-logo.svg';
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -52,14 +53,14 @@ const Navbar = () => {
       <Toolbar>
         <Box 
           component="img" 
-          src="/src/assets/cybernetx-logo.svg"
+          src={Logo} 
           alt="CyberNetX Logo"
           sx={{ 
             height: 40,
             cursor: 'pointer',
-            mr: 2
+            mr: 3
           }}
-          onClick={() => navigate('/')}
+          onClick={() => navigateTo('/')}
         />
 
         {/* Desktop Navigation */}
@@ -72,78 +73,63 @@ const Navbar = () => {
         {/* Mobile Navigation */}
         {isMobile && (
           <>
+            <Box sx={{ flexGrow: 1 }} />
             <IconButton
               color="inherit"
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              sx={{ ml: 'auto' }}
             >
               <MenuIcon />
             </IconButton>
-
-            <Drawer
-              anchor="right"
-              open={mobileOpen}
-              onClose={handleDrawerToggle}
-              sx={{
-                '& .MuiDrawer-paper': {
-                  width: '100%',
-                  background: 'rgba(0, 0, 0, 0.95)',
-                  backdropFilter: 'blur(8px)',
-                },
-              }}
-            >
-              <Box sx={{ p: 2, display: 'flex', justifyContent: 'flex-end' }}>
-                <IconButton color="inherit" onClick={handleDrawerToggle}>
-                  <CloseIcon />
-                </IconButton>
-              </Box>
-              <List sx={{ mt: 4 }}>
-                <ListItem>
-                  <Button 
-                    fullWidth 
-                    color="inherit" 
-                    onClick={() => scrollToSection('solutions')}
-                    sx={{ py: 2 }}
-                  >
-                    Solutions
-                  </Button>
-                </ListItem>
-                <ListItem>
-                  <Button 
-                    fullWidth 
-                    color="inherit" 
-                    onClick={() => scrollToSection('about')}
-                    sx={{ py: 2 }}
-                  >
-                    About
-                  </Button>
-                </ListItem>
-                <ListItem>
-                  <Button 
-                    fullWidth 
-                    color="inherit" 
-                    onClick={() => navigateTo('/blog')}
-                    sx={{ py: 2 }}
-                  >
-                    Blog
-                  </Button>
-                </ListItem>
-                <ListItem>
-                  <Button 
-                    fullWidth 
-                    color="inherit" 
-                    onClick={() => scrollToSection('contact')}
-                    sx={{ py: 2 }}
-                  >
-                    Contact
-                  </Button>
-                </ListItem>
-              </List>
-            </Drawer>
           </>
         )}
+
+        <Drawer
+          variant="temporary"
+          anchor="right"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true,
+          }}
+          sx={{
+            '& .MuiDrawer-paper': { 
+              width: 240,
+              background: 'rgba(0, 0, 0, 0.9)',
+              backdropFilter: 'blur(8px)',
+              color: 'white'
+            },
+          }}
+        >
+          <Box sx={{ p: 2, display: 'flex', justifyContent: 'flex-end' }}>
+            <IconButton color="inherit" onClick={handleDrawerToggle}>
+              <CloseIcon />
+            </IconButton>
+          </Box>
+          <List>
+            <ListItem>
+              <Button fullWidth color="inherit" onClick={() => scrollToSection('solutions')}>
+                Solutions
+              </Button>
+            </ListItem>
+            <ListItem>
+              <Button fullWidth color="inherit" onClick={() => scrollToSection('about')}>
+                About
+              </Button>
+            </ListItem>
+            <ListItem>
+              <Button fullWidth color="inherit" onClick={() => navigateTo('/blog')}>
+                Blog
+              </Button>
+            </ListItem>
+            <ListItem>
+              <Button fullWidth color="inherit" onClick={() => scrollToSection('contact')}>
+                Contact
+              </Button>
+            </ListItem>
+          </List>
+        </Drawer>
       </Toolbar>
     </AppBar>
   );

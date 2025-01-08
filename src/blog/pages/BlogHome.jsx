@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Box, Typography, Tabs, Tab } from '@mui/material';
 import BlogLayout from '../layouts/BlogLayout';
 import BlogList from '../components/BlogList';
+import NewsletterSubscribe from '../components/NewsletterSubscribe';
 
 // This will be replaced with actual blog posts from the MDX files
 const SAMPLE_POSTS = [
@@ -11,13 +12,30 @@ const SAMPLE_POSTS = [
     excerpt: 'Explore how artificial intelligence is revolutionizing healthcare in 2025, from automated documentation to predictive diagnostics.',
     date: '2025-01-07',
     categories: ['AI', 'Healthcare', 'Technology'],
-    image: '/blog/ai-healthcare-2025.jpg',
+    image: '/blog/images/ai-healthcare-2025.jpg',
     author: 'CyberNetX Team'
   },
-  // More posts will be added here
+  {
+    slug: 'medical-transcription-revolution',
+    title: 'The Medical Transcription Revolution: How AI is Saving Time and Improving Accuracy',
+    excerpt: 'Discover how AI-powered medical transcription is helping healthcare providers save up to 60% of their documentation time while improving accuracy.',
+    date: '2025-01-05',
+    categories: ['AI', 'Medical Transcription', 'Case Study'],
+    image: '/blog/images/medical-transcription.jpg',
+    author: 'Dr. Sarah Chen'
+  },
+  {
+    slug: 'hipaa-compliance-ai',
+    title: 'HIPAA Compliance in the Age of AI: A Complete Guide',
+    excerpt: 'Learn how to maintain HIPAA compliance while leveraging AI technologies in your healthcare practice. A comprehensive guide for healthcare providers.',
+    date: '2025-01-03',
+    categories: ['Healthcare', 'Security', 'Compliance'],
+    image: '/blog/images/hipaa-compliance.jpg',
+    author: 'Michael Roberts'
+  }
 ];
 
-const CATEGORIES = ['All', 'AI', 'Healthcare', 'Technology', 'Case Studies'];
+const CATEGORIES = ['All', 'AI', 'Healthcare', 'Technology', 'Case Studies', 'Security', 'Compliance'];
 
 const BlogHome = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -46,6 +64,8 @@ const BlogHome = () => {
       </Box>
 
       <BlogList posts={filteredPosts} />
+      
+      <NewsletterSubscribe />
     </BlogLayout>
   );
 };

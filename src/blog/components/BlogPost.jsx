@@ -1,7 +1,15 @@
 import { Box, Typography, Chip, Divider } from '@mui/material';
 import { format } from 'date-fns';
+import { useEffect, useState } from 'react';
+import SocialShare from './SocialShare';
 
 const BlogPost = ({ title, date, content, categories, author }) => {
+  const [currentUrl, setCurrentUrl] = useState('');
+
+  useEffect(() => {
+    setCurrentUrl(window.location.href);
+  }, []);
+
   return (
     <Box>
       <Typography variant="h2" component="h1" gutterBottom>
@@ -28,6 +36,12 @@ const BlogPost = ({ title, date, content, categories, author }) => {
           />
         ))}
       </Box>
+
+      {currentUrl && (
+        <Box sx={{ mb: 4 }}>
+          <SocialShare title={title} url={currentUrl} />
+        </Box>
+      )}
 
       <Divider sx={{ my: 4 }} />
 
