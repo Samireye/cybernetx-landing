@@ -1,122 +1,136 @@
 import { useState } from 'react';
-import { 
-  Box, 
-  Paper, 
-  Typography, 
-  TextField, 
-  Button, 
-  Snackbar, 
-  Alert,
-  useTheme 
-} from '@mui/material';
-import EmailIcon from '@mui/icons-material/Email';
+import { Box, Typography, TextField, Button, Alert, Snackbar } from '@mui/material';
+import emailjs from '@emailjs/browser';
+import { EMAILJS_CONFIG } from '../../config/emailjs';
 
 const NewsletterSubscribe = () => {
   const [email, setEmail] = useState('');
-  const [open, setOpen] = useState(false);
-  const [status, setStatus] = useState({ type: 'success', message: '' });
-  const theme = useTheme();
+  const [loading, setLoading] = useState(false);
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: '',
+    severity: 'success'
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Here you would typically integrate with your email service provider
-    // For now, we'll just simulate a successful subscription
+    setLoading(true);
+
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setStatus({
-        type: 'success',
-        message: 'Thank you for subscribing! Please check your email to confirm your subscription.'
+      await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
+        {
+          email_to: email,
+          reply_to: email,
+          to_name: email.split('@')[0], // Use part before @ as name
+        },
+        EMAILJS_CONFIG.PUBLIC_KEY
+      );
+
+      setSnackbar({
+        open: true,
+        message: 'Thank you for subscribing! You will receive our newsletter soon.',
+        severity: 'success'
       });
       setEmail('');
-      setOpen(true);
     } catch (error) {
-      setStatus({
-        type: 'error',
-        message: 'Something went wrong. Please try again later.'
+      console.error('Newsletter subscription error:', error);
+      setSnackbar({
+        open: true,
+        message: 'Sorry, there was an error. Please try again later.',
+        severity: 'error'
       });
-      setOpen(true);
     }
+
+    setLoading(false);
+  };
+
+  const handleCloseSnackbar = () => {
+    setSnackbar(prev => ({ ...prev, open: false }));
   };
 
   return (
-    <Paper 
-      sx={{ 
-        p: 4, 
-        mt: 6, 
-        mb: 4,
-        background: 'linear-gradient(45deg, rgba(0,229,255,0.1) 0%, rgba(76,175,80,0.1) 100%)',
-        backdropFilter: 'blur(10px)',
-        border: '1px solid rgba(255,255,255,0.1)'
+    <Box
+      sx={{
+        p: 4,
+        borderRadius: 2,
+        bgcolor: 'background.paper',
+        backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.1) 0%, rgba(76, 175, 80, 0.05) 25%, rgba(0, 0, 0, 0) 50%)',
+        border: '1px solid',
+        borderColor: 'divider',
       }}
     >
-      <Box component="form" onSubmit={handleSubmit} sx={{ textAlign: 'center' }}>
-        <EmailIcon sx={{ fontSize: 40, mb: 2, color: 'primary.main' }} />
-        <Typography variant="h4" component="h2" gutterBottom>
-          Stay Updated
-        </Typography>
-        <Typography variant="body1" sx={{ mb: 3 }}>
-          Subscribe to our newsletter for the latest insights in healthcare AI
-        </Typography>
-        <Box sx={{ 
-          display: 'flex', 
-          gap: 2,
+      <Typography variant="h4" component="h2" gutterBottom align="center">
+        Stay Updated
+      </Typography>
+      <Typography variant="body1" color="text.secondary" paragraph align="center">
+        Subscribe to our newsletter for the latest insights in healthcare AI and HIPAA compliance.
+      </Typography>
+
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{
+          mt: 3,
+          display: 'flex',
           flexDirection: { xs: 'column', sm: 'row' },
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}>
-          <TextField
-            label="Email Address"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            sx={{ 
-              minWidth: { sm: '300px' },
-              '& .MuiOutlinedInput-root': {
-                '& fieldset': {
-                  borderColor: 'rgba(255,255,255,0.23)',
-                },
-                '&:hover fieldset': {
-                  borderColor: 'rgba(255,255,255,0.5)',
-                },
-              }
-            }}
-          />
-          <Button
-            type="submit"
-            variant="contained"
-            size="large"
-            sx={{
-              background: 'linear-gradient(45deg, #00E5FF 30%, #4CAF50 90%)',
-              '&:hover': {
-                background: 'linear-gradient(45deg, #00E5FF 10%, #4CAF50 70%)',
+          gap: 2,
+          maxWidth: 600,
+          mx: 'auto'
+        }}
+      >
+        <TextField
+          fullWidth
+          type="email"
+          label="Email Address"
+          variant="outlined"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'divider',
               },
-              minWidth: { xs: '100%', sm: 'auto' }
-            }}
-          >
-            Subscribe
-          </Button>
-        </Box>
+              '&:hover fieldset': {
+                borderColor: 'primary.main',
+              },
+            },
+          }}
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          disabled={loading}
+          sx={{
+            minWidth: { sm: 200 },
+            background: 'linear-gradient(45deg, #00E5FF 30%, #4CAF50 90%)',
+            '&:hover': {
+              background: 'linear-gradient(45deg, #00B2CC 30%, #388E3C 90%)',
+            },
+          }}
+        >
+          {loading ? 'Subscribing...' : 'Subscribe'}
+        </Button>
       </Box>
-      <Snackbar 
-        open={open} 
-        autoHideDuration={6000} 
-        onClose={() => setOpen(false)}
+
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
-        <Alert 
-          onClose={() => setOpen(false)} 
-          severity={status.type}
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity={snackbar.severity}
           variant="filled"
           sx={{ width: '100%' }}
         >
-          {status.message}
+          {snackbar.message}
         </Alert>
       </Snackbar>
-    </Paper>
+    </Box>
   );
 };
 
