@@ -135,6 +135,7 @@ const Contact = () => {
                 required
                 fullWidth
                 label="Name"
+                name="user_name"
                 variant="outlined"
               />
             </Grid>
@@ -143,6 +144,7 @@ const Contact = () => {
                 required
                 fullWidth
                 label="Email"
+                name="user_email"
                 variant="outlined"
                 type="email"
               />
@@ -152,6 +154,7 @@ const Contact = () => {
                 required
                 fullWidth
                 label="Subject"
+                name="subject"
                 variant="outlined"
               />
             </Grid>
@@ -160,6 +163,7 @@ const Contact = () => {
                 required
                 fullWidth
                 label="Message"
+                name="message"
                 variant="outlined"
                 multiline
                 rows={4}

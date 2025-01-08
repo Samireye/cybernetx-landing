@@ -98,7 +98,7 @@ const Footer = () => {
               >
                 Email: <Link href="mailto:cybernetxai@gmail.com">cybernetxai@gmail.com</Link><br />
                 Phone: (202) 556-0528<br />
-                Location: Silicon Valley, CA
+                Location: Washington, DC
               </Typography>
             </Grid>
           </Grid>
