@@ -14,23 +14,23 @@ import Footer from './components/Footer';
 import SEO from './components/SEO';
 import BlogHome from './blog/pages/BlogHome';
 
-// Debug: Log environment variables
-console.log('Vite Env Variables:', {
-  VITE_EMAILJS_SERVICE_ID: import.meta.env.VITE_EMAILJS_SERVICE_ID,
-  VITE_EMAILJS_PUBLIC_KEY: import.meta.env.VITE_EMAILJS_PUBLIC_KEY?.slice(0, 5) + '...',
-  hasServiceId: !!import.meta.env.VITE_EMAILJS_SERVICE_ID,
-  hasPublicKey: !!import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-});
+// Log environment variables immediately
+console.log('=== START: Environment Variables Check ===');
+console.log('Service ID:', import.meta.env.VITE_EMAILJS_SERVICE_ID);
+console.log('Public Key:', import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+console.log('Newsletter Template:', import.meta.env.VITE_EMAILJS_NEWSLETTER_TEMPLATE_ID);
+console.log('Contact Template:', import.meta.env.VITE_EMAILJS_CONTACT_TEMPLATE_ID);
+console.log('=== END: Environment Variables Check ===');
 
 function App() {
   useEffect(() => {
     try {
-      // Initialize EmailJS with just the key
+      console.log('Attempting EmailJS initialization...');
       emailjs.init({
         publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
         debug: true
       });
-      console.log('EmailJS initialized successfully');
+      console.log('EmailJS initialization successful');
       console.log('Environment variables loaded:', {
         serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
         newsletterTemplateId: import.meta.env.VITE_EMAILJS_NEWSLETTER_TEMPLATE_ID,
@@ -38,7 +38,7 @@ function App() {
         hasPublicKey: !!import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       });
     } catch (error) {
-      console.error('EmailJS initialization error:', error);
+      console.error('EmailJS initialization failed:', error);
     }
   }, []);
 

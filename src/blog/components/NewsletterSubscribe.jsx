@@ -16,6 +16,12 @@ const NewsletterSubscribe = () => {
     setLoading(true);
 
     try {
+      console.log('Newsletter - Attempting to send email with:', {
+        serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        templateId: import.meta.env.VITE_EMAILJS_NEWSLETTER_TEMPLATE_ID,
+        hasPublicKey: !!import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      });
+
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_NEWSLETTER_TEMPLATE_ID,
@@ -25,6 +31,8 @@ const NewsletterSubscribe = () => {
           to_name: email.split('@')[0],
         }
       );
+
+      console.log('Newsletter - Email sent successfully');
 
       setSnackbar({
         open: true,
