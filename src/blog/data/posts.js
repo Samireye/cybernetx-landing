@@ -16,7 +16,7 @@ Key areas of impact include:
 • Remote patient monitoring
 
 As we look ahead to 2025, we expect to see even more innovative applications of AI in healthcare, all while maintaining strict HIPAA compliance and patient privacy standards.`,
-    image: '/blog/ai-healthcare-2025.jpg'
+    image: '/blog/ai-healthcare-2025.svg'
   },
   {
     slug: 'hipaa-compliance-ai',
@@ -35,7 +35,7 @@ Key considerations include:
 • Patient consent management
 
 We'll examine how modern healthcare organizations can balance innovation with compliance.`,
-    image: '/blog/hipaa-compliance.jpg'
+    image: '/blog/hipaa-compliance.svg'
   },
   {
     slug: 'medical-transcription-revolution',
@@ -54,7 +54,7 @@ Benefits of AI transcription:
 • Integrated medical terminology
 
 Learn how modern transcription solutions are helping healthcare providers improve efficiency while maintaining accuracy.`,
-    image: '/blog/medical-transcription.jpg'
+    image: '/blog/medical-transcription.svg'
   }
 ];
 
