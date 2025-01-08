@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="headerGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#00E5FF;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#4CAF50;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#00B2CC;stop-opacity:1" />
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
+      <stop offset="0%" style="stop-color:#00E5FF;stop-opacity:0.2"/>
+      <stop offset="50%" style="stop-color:#4CAF50;stop-opacity:0.1"/>
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:0"/>
+    </radialGradient>
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00E5FF;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#4CAF50;stop-opacity:1"/>
     </linearGradient>
   </defs>
+  
+  <!-- Dark background -->
   <rect width="800" height="400" fill="#1a1a1a"/>
-  <g fill="url(#headerGradient)">
-    <circle cx="400" cy="200" r="80" opacity="0.2"/>
-    <circle cx="400" cy="200" r="60" opacity="0.4"/>
-    <circle cx="400" cy="200" r="40" opacity="0.6"/>
+  
+  <!-- Gradient overlay -->
+  <rect width="800" height="400" fill="url(#bgGradient)"/>
+  
+  <!-- Concentric circles -->
+  <g transform="translate(400,200)">
+    <circle r="100" fill="none" stroke="url(#iconGradient)" stroke-width="2" opacity="0.3"/>
+    <circle r="80" fill="none" stroke="url(#iconGradient)" stroke-width="2" opacity="0.4"/>
+    <circle r="60" fill="none" stroke="url(#iconGradient)" stroke-width="2" opacity="0.5"/>
+    <circle r="40" fill="none" stroke="url(#iconGradient)" stroke-width="2" opacity="0.6"/>
   </g>
-  <text x="400" y="200" font-family="Arial" font-size="24" fill="white" text-anchor="middle">
+  
+  <!-- Title -->
+  <text x="400" y="200" font-family="Arial" font-size="24" fill="white" text-anchor="middle" font-weight="bold">
     AI in Healthcare 2025
   </text>
 </svg>
