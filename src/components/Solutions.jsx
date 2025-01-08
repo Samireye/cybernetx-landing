@@ -53,8 +53,8 @@ const solutions = [
     icon: HealthAndSafetyIcon,
   },
   {
-    title: 'HealthScribe',
-    description: 'Automated clinical note generation from audio recordings, powered by AWS Bedrock, making documentation effortless.',
+    title: 'CyberScribe',
+    description: 'AI-powered clinical note generation from audio, streamlining documentation for healthcare providers.',
     icon: MonitorHeartIcon,
   },
   {
