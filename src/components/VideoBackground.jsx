@@ -31,7 +31,7 @@ const Video = styled('video')({
 const VideoBackground = () => {
   return (
     <VideoContainer>
-      <Video>
+      <Video
         autoPlay
         muted
         loop
@@ -39,7 +39,7 @@ const VideoBackground = () => {
         poster="/videos/video-poster.jpg"
         src="/videos/background.mp4"
         type="video/mp4"
-      </Video>
+      />
     </VideoContainer>
   );
 };
