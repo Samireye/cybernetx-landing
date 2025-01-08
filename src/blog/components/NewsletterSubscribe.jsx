@@ -19,7 +19,7 @@ const NewsletterSubscribe = () => {
     try {
       await emailjs.send(
         EMAILJS_CONFIG.SERVICE_ID,
-        EMAILJS_CONFIG.TEMPLATE_ID,
+        EMAILJS_CONFIG.NEWSLETTER_TEMPLATE_ID,
         {
           email_to: email,
           reply_to: email,

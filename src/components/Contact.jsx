@@ -2,9 +2,10 @@ import { Box, Container, Typography, TextField, Button, Grid, Snackbar, Alert } 
 import { styled } from '@mui/material/styles';
 import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import { EMAILJS_CONFIG } from '../config/emailjs';
 
 // Initialize EmailJS
-emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
 
 const GradientText = styled(Typography)(({ theme }) => ({
   background: 'linear-gradient(45deg, #00E5FF 30%, #4CAF50 90%)',
@@ -52,10 +53,10 @@ const Contact = () => {
 
     try {
       const result = await emailjs.sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
         form.current,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        EMAILJS_CONFIG.PUBLIC_KEY
       );
 
       setSnackbar({
