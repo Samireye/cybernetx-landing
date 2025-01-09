@@ -9,13 +9,13 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Solutions from './components/Solutions';
 import About from './components/About';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
 import SEO from './components/SEO';
 import BlogHome from './blog/pages/BlogHome';
 import BlogPost from './blog/components/BlogPost';
 import NewsletterSubscribe from './blog/components/NewsletterSubscribe';
 import SolutionsPage from './components/SolutionsPage';
+import ContactPage from './components/ContactPage';
 
 // Log environment variables immediately
 console.log('=== START: Environment Variables Check ===');
@@ -62,6 +62,7 @@ function App() {
                 <Route path="/blog" element={<BlogHome />} />
                 <Route path="/blog/:slug" element={<BlogPost />} />
                 <Route path="/solutions" element={<SolutionsPage />} />
+                <Route path="/contact" element={<ContactPage />} />
                 <Route path="/" element={
                   <>
                     <Box id="hero">
@@ -82,9 +83,6 @@ function App() {
                       }}
                     >
                       <NewsletterSubscribe />
-                    </Box>
-                    <Box id="contact">
-                      <Contact />
                     </Box>
                   </>
                 } />
