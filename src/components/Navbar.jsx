@@ -1,11 +1,11 @@
-import { AppBar, Toolbar, Button, Box, IconButton, Drawer, List, ListItem, useTheme, useMediaQuery, Typography } from '@mui/material';
+import { AppBar, Toolbar, Button, Box, IconButton, Drawer, List, ListItem, useTheme, useMediaQuery, Typography, Link } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
-const Navbar = () => {
+const Navbar = ({ scrollToSection }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -16,35 +16,28 @@ const Navbar = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const scrollToSection = (sectionId) => {
-    setMobileOpen(false);
-    if (location.pathname !== '/') {
-      navigate('/');
-      setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
+  const navigateTo = (path) => {
+    if (path.startsWith('/')) {
+      navigate(path);
     } else {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+      scrollToSection(path);
     }
+    setMobileOpen(false);
   };
 
-  const navigateTo = (path) => {
-    setMobileOpen(false);
-    navigate(path);
+  const handleNavigation = (path) => {
+    navigateTo(path);
+    if (mobileOpen) {
+      handleDrawerToggle();
+    }
   };
 
   const NavItems = () => (
     <>
-      <Button color="inherit" onClick={() => navigateTo('/solutions')}>Solutions</Button>
-      <Button color="inherit" onClick={() => scrollToSection('about')}>About</Button>
-      <Button color="inherit" onClick={() => navigateTo('/blog')}>Blog</Button>
-      <Button color="inherit" onClick={() => scrollToSection('contact')}>Contact</Button>
+      <Button color="inherit" onClick={() => handleNavigation('/solutions')}>Solutions</Button>
+      <Button color="inherit" onClick={() => handleNavigation('about')}>About</Button>
+      <Button color="inherit" onClick={() => handleNavigation('/blog')}>Blog</Button>
+      <Button color="inherit" onClick={() => handleNavigation('/contact')}>Contact</Button>
     </>
   );
 
@@ -63,7 +56,7 @@ const Navbar = () => {
               objectFit: 'contain',
               mr: 1
             }}
-            onClick={() => navigateTo('/')}
+            onClick={() => handleNavigation('/')}
           />
           <Typography
             variant="h6"
@@ -74,7 +67,7 @@ const Navbar = () => {
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent'
             }}
-            onClick={() => navigateTo('/')}
+            onClick={() => handleNavigation('/')}
           >
             CyberNetX
           </Typography>
@@ -125,22 +118,22 @@ const Navbar = () => {
           </Box>
           <List>
             <ListItem>
-              <Button fullWidth color="inherit" onClick={() => navigateTo('/solutions')}>
+              <Button fullWidth color="inherit" onClick={() => handleNavigation('/solutions')}>
                 Solutions
               </Button>
             </ListItem>
             <ListItem>
-              <Button fullWidth color="inherit" onClick={() => scrollToSection('about')}>
+              <Button fullWidth color="inherit" onClick={() => handleNavigation('about')}>
                 About
               </Button>
             </ListItem>
             <ListItem>
-              <Button fullWidth color="inherit" onClick={() => navigateTo('/blog')}>
+              <Button fullWidth color="inherit" onClick={() => handleNavigation('/blog')}>
                 Blog
               </Button>
             </ListItem>
             <ListItem>
-              <Button fullWidth color="inherit" onClick={() => scrollToSection('contact')}>
+              <Button fullWidth color="inherit" onClick={() => handleNavigation('/contact')}>
                 Contact
               </Button>
             </ListItem>

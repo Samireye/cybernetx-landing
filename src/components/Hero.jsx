@@ -1,5 +1,6 @@
 import { Box, Container, Typography, Button, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 import VideoBackground from './VideoBackground';
 
 const HeroSection = styled(Box)(({ theme }) => ({
@@ -36,6 +37,8 @@ const GradientText = styled(Typography)(({ theme }) => ({
 }));
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -133,7 +136,7 @@ const Hero = () => {
                 variant="outlined"
                 size="large"
                 fullWidth={false}
-                onClick={() => scrollToSection('contact')}
+                onClick={() => navigate('/contact')}
                 sx={{
                   borderColor: 'rgba(255,255,255,0.3)',
                   backdropFilter: 'blur(4px)',
