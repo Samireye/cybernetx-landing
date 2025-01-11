@@ -141,7 +141,7 @@ const ContactPage = () => {
                         Email
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        info@cybernetx.ai
+                        cybernetxai@gmail.com
                       </Typography>
                     </Box>
                   </Box>
@@ -153,7 +153,7 @@ const ContactPage = () => {
                         Location
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        San Francisco Bay Area, CA
+                        Washington DC, USA
                       </Typography>
                     </Box>
                   </Box>
@@ -165,7 +165,7 @@ const ContactPage = () => {
                         Phone
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        +1 (555) 123-4567
+                        +1 (202) 556 - 0528
                       </Typography>
                     </Box>
                   </Box>
