@@ -27,6 +27,20 @@ console.log('Contact Template:', import.meta.env.VITE_EMAILJS_CONTACT_TEMPLATE_I
 console.log('=== END: Environment Variables Check ===');
 
 function App() {
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerOffset = 64;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   useEffect(() => {
     try {
       console.log('Attempting EmailJS initialization...');
@@ -58,7 +72,7 @@ function App() {
               background: '#000000',
               backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.1) 0%, rgba(76, 175, 80, 0.05) 25%, rgba(0, 0, 0, 0) 50%)',
             }}>
-              <Navbar />
+              <Navbar scrollToSection={scrollToSection} />
               <Routes>
                 <Route path="/blog" element={<BlogHome />} />
                 <Route path="/blog/:slug" element={<BlogPost />} />
@@ -68,7 +82,7 @@ function App() {
                 <Route path="/" element={
                   <>
                     <Box id="hero">
-                      <Hero />
+                      <Hero scrollToSection={scrollToSection} />
                     </Box>
                     <Box id="solutions">
                       <Solutions />

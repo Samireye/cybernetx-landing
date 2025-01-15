@@ -36,22 +36,8 @@ const GradientText = styled(Typography)(({ theme }) => ({
   display: 'inline-block',
 }));
 
-const Hero = () => {
+const Hero = ({ scrollToSection }) => {
   const navigate = useNavigate();
-
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const headerOffset = 64; // Height of your fixed header if you have one
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
 
   return (
     <HeroSection>

@@ -1,8 +1,8 @@
 import { Box, Container, Typography, Grid, Paper, Card, CardContent } from '@mui/material';
-import DiversityThreeIcon from '@mui/icons-material/DiversityThree';
-import ConnectedTvIcon from '@mui/icons-material/ConnectedTv';
-import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
-import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
+import GroupIcon from '@mui/icons-material/Group';
+import DevicesIcon from '@mui/icons-material/Devices';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 
 const AboutPage = () => {
   return (
@@ -71,7 +71,7 @@ const AboutPage = () => {
                 }}
               >
                 <CardContent sx={{ textAlign: 'center' }}>
-                  <DiversityThreeIcon sx={{ fontSize: 48, color: 'primary.main', mb: 2 }} />
+                  <GroupIcon sx={{ fontSize: 48, color: 'primary.main', mb: 2 }} />
                   <Typography variant="h6" gutterBottom>
                     Diversity
                   </Typography>
@@ -94,7 +94,7 @@ const AboutPage = () => {
                 }}
               >
                 <CardContent sx={{ textAlign: 'center' }}>
-                  <ConnectedTvIcon sx={{ fontSize: 48, color: 'primary.main', mb: 2 }} />
+                  <DevicesIcon sx={{ fontSize: 48, color: 'primary.main', mb: 2 }} />
                   <Typography variant="h6" gutterBottom>
                     Innovation
                   </Typography>
@@ -117,7 +117,7 @@ const AboutPage = () => {
                 }}
               >
                 <CardContent sx={{ textAlign: 'center' }}>
-                  <VolunteerActivismIcon sx={{ fontSize: 48, color: 'primary.main', mb: 2 }} />
+                  <FavoriteIcon sx={{ fontSize: 48, color: 'primary.main', mb: 2 }} />
                   <Typography variant="h6" gutterBottom>
                     Impact
                   </Typography>
@@ -140,7 +140,7 @@ const AboutPage = () => {
                 }}
               >
                 <CardContent sx={{ textAlign: 'center' }}>
-                  <MedicalServicesIcon sx={{ fontSize: 48, color: 'primary.main', mb: 2 }} />
+                  <LocalHospitalIcon sx={{ fontSize: 48, color: 'primary.main', mb: 2 }} />
                   <Typography variant="h6" gutterBottom>
                     Excellence
                   </Typography>
