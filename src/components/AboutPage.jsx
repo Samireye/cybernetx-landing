@@ -169,7 +169,7 @@ const AboutPage = () => {
                   Who We Are
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  CyberNetX is a minority-owned small business based in the San Francisco Bay Area. 
+                  CyberNetX is a minority-owned small business based in the Washington DC Area. 
                   We bring together expertise in technology and healthcare to create innovative solutions 
                   that improve the way healthcare providers connect with their patients.
                 </Typography>
