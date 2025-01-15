@@ -35,7 +35,7 @@ const Navbar = ({ scrollToSection }) => {
   const NavItems = () => (
     <>
       <Button color="inherit" onClick={() => handleNavigation('/solutions')}>Solutions</Button>
-      <Button color="inherit" onClick={() => handleNavigation('about')}>About</Button>
+      <Button color="inherit" onClick={() => handleNavigation('/about')}>About</Button>
       <Button color="inherit" onClick={() => handleNavigation('/blog')}>Blog</Button>
       <Button color="inherit" onClick={() => handleNavigation('/contact')}>Contact</Button>
     </>
@@ -123,7 +123,7 @@ const Navbar = ({ scrollToSection }) => {
               </Button>
             </ListItem>
             <ListItem>
-              <Button fullWidth color="inherit" onClick={() => handleNavigation('about')}>
+              <Button fullWidth color="inherit" onClick={() => handleNavigation('/about')}>
                 About
               </Button>
             </ListItem>
